@@ -65,10 +65,11 @@ function App() {
         <FormControl
           type="text"
           placeholder="Filter by value..."
-          className="mb-2"
+          className="mb-3"
           value={filterValue}
           onChange={e => setFilterValue(e.target.value)}
         />
+        <span className="me-3">Filter Options: </span>
         <Button
           variant={activeFilter === 'firstName' ? 'primary active' : 'primary'}
           onClick={() => handleFilter('firstName')}
