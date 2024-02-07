@@ -1,28 +1,28 @@
-import "./App.css";
-import { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import './App.css';
+import { useEffect, useState } from 'react';
+import { Table, Button } from 'react-bootstrap';
 
 function App() {
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5290/getCustomers")
-      .then((res) => {
+    fetch('http://localhost:5290/getCustomers')
+      .then(res => {
         return res.json();
       })
-      .then((data) => {
+      .then(data => {
         setCustomers(data);
       });
   }, []);
 
   const [sortField, setSortField] = useState(null);
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState('asc');
 
-  const handleSort = (field) => {
+  const handleSort = field => {
     if (sortField === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
       setSortField(field);
-      setSortOrder("asc");
+      setSortOrder('asc');
     }
   };
 
@@ -31,8 +31,8 @@ function App() {
       const aValue = a[sortField];
       const bValue = b[sortField];
 
-      if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
-      if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
+      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
     }
 
     return 0;
@@ -44,27 +44,27 @@ function App() {
         <thead>
           <tr>
             <th>
-              <Button variant="link" onClick={() => handleSort("customerId")}>
+              <Button variant="link" onClick={() => handleSort('customerId')}>
                 Customer ID
               </Button>
             </th>
             <th>
-              <Button variant="link" onClick={() => handleSort("firstName")}>
+              <Button variant="link" onClick={() => handleSort('firstName')}>
                 Name
               </Button>
             </th>
             <th>
-              <Button variant="link" onClick={() => handleSort("title")}>
+              <Button variant="link" onClick={() => handleSort('title')}>
                 Title
               </Button>
             </th>
             <th>
-              <Button variant="link" onClick={() => handleSort("emailAddress")}>
+              <Button variant="link" onClick={() => handleSort('emailAddress')}>
                 Email Address
               </Button>
             </th>
             <th>
-              <Button variant="link" onClick={() => handleSort("phone")}>
+              <Button variant="link" onClick={() => handleSort('phone')}>
                 Phone
               </Button>
             </th>
@@ -72,7 +72,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {sortedCustomers.map((customer) => (
+          {sortedCustomers.map(customer => (
             <tr key={customer.customerId}>
               <td>{customer.customerId}</td>
               <td>{`${customer.firstName} ${customer.lastName}`}</td>
